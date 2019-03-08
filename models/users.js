@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const {Schema} = mongoose; // destructuring taking mongoose.Schema
+const { Schema } = mongoose; // destructuring taking mongoose.Schema
 
 //User schema to define the required field and its type
 const userSchema = new Schema({

@@ -24,7 +24,8 @@ passport.use(
         {
             clientID: keys.googleClientID,
             clientSecret: keys.googleClientSecret,
-            callbackURL: '/auth/google/callback' //to any route you define
+            callbackURL: '/auth/google/callback', //to any route you define
+            proxy: true
         },
         function(accessToken, refreshToken, profile, done){
             // find the input id in our database, if none found, then register

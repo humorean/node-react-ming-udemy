@@ -11,7 +11,8 @@
     "start": "node index.js",
     "test": "test",
     "server": "nodemon index.js",
-    "client": "npm run start --prefix client"
+    "client": "npm run start --prefix client",
+    "dev" : "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Ming",
   "license": "ISC",
