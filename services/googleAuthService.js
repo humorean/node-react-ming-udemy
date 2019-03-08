@@ -35,6 +35,7 @@ passport.use(
                         console.log(`User already registered and it is: ${existingUser}`);
                         done(null, existingUser);
                     }else{
+                        console.log(`New user!! we will register you!!`);
                         new User({googleId: profile.id})
                         .save()
                         .then(user=> done(null, user));

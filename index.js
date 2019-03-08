@@ -33,7 +33,7 @@ app.get('/',(req,res)=>{
     );
 });
 
-require('./routes/googleAuthRoutes')(app); //route to auth/google
+require('./routes/googleAuthRoutes')(app); // all routes from auth/googleAuthRoutes now is in this file
 
 
 // create a GET route

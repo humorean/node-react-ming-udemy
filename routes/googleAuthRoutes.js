@@ -14,12 +14,13 @@ module.exports = app => {
         res.redirect('/');
     });
 
-    app.get('/logout', (req, res)=>{
+    app.get('/api/logout', (req, res)=>{
         req.logout(); //built-in function to log user out and make cookie expire
-        res.send(req.user);
+        res.send(req.user); // after logout this will return undefined
     })
 
-    app.get('/current_user', (req,res)=>{
+    app.get('/api/current_user', (req,res)=>{
+        // passport will attach to the req object which contains user
         res.send(req.user);
     })
 }
