@@ -2,10 +2,12 @@
 // check the process.env object
 if(process.env.NODE_ENV === 'production'){
     // we are in production return the prod set
-    module.export = require('./prod');
+    module.exports = require('./prod');
 }else{
     // we are in dev so return the dev set
-    module.export = require('./dev');
+    // console.log('in dev');
+    // console.log(JSON.stringify(require('./dev')))
+    module.exports = require('./dev');
 }
 
 

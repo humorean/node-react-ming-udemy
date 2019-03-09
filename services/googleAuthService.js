@@ -17,15 +17,13 @@ passport.deserializeUser((id, done)=>{
         });
 })
 
-//https://console.developers.google.com
-
 passport.use(
     new googleStrategy(
         {
             clientID: keys.googleClientID,
             clientSecret: keys.googleClientSecret,
             callbackURL: '/auth/google/callback', //to any route you define
-            proxy: true
+            proxy: true // this will fix the http vs https
         },
         function(accessToken, refreshToken, profile, done){
             // find the input id in our database, if none found, then register
