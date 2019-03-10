@@ -25,20 +25,22 @@ passport.use(
             callbackURL: '/auth/google/callback', //to any route you define
             proxy: true // this will fix the http vs https
         },
-        function(accessToken, refreshToken, profile, done){
+        async function(accessToken, refreshToken, profile, done){
             // find the input id in our database, if none found, then register
-            User.findOne({googleId : profile.id})
-                .then(existingUser =>{
+            let existingUser = await User.findOne({googleId : profile.id}); 
+                try {
                     if(existingUser){
                         console.log(`User already registered and it is: ${existingUser}`);
                         done(null, existingUser);
                     }else{
                         console.log(`New user!! we will register you!!`);
-                        new User({googleId: profile.id})
-                        .save()
-                        .then(user=> done(null, user));
+                        let user = await new User({googleId: profile.id}).save()
+                        done(null, user);
                     }
-                });
+                }
+                catch(err) {
+                    console.log(err);
+                }
             // console.log(`accessToek: ${accessToken}`);
             // console.log(`refresh token: ${refreshToken}`);
             // console.log(`Google Profile: ${profile}`);

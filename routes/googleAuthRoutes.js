@@ -7,16 +7,19 @@ module.exports = app => {
             scope: ['profile'] //defines what fields we want from google profile
         })
     );
+
+    // the above code google will need a callback to handle what comes after auth
     app.get('/auth/google/callback', 
-    passport.authenticate('google', { failureRedirect: '/login' }),
-    function(req, res) {
-        // Successful authentication, redirect home.
-        res.redirect('/');
+        passport.authenticate('google', { failureRedirect: '/login' }),
+        (req, res) => {
+            // Successful authentication, redirect home.
+            res.redirect('/surveys');
     });
 
     app.get('/api/logout', (req, res)=>{
         req.logout(); //built-in function to log user out and make cookie expire
-        res.send(req.user); // after logout this will return undefined
+        // res.send(req.user); // after logout this will return undefined
+        res.redirect('/');
     })
 
     app.get('/api/current_user', (req,res)=>{
